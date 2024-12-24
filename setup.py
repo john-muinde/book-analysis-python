@@ -2,51 +2,31 @@ import subprocess
 import sys
 import os
 
-def check_python_version():
-    """Check if Python version is compatible."""
-    if sys.version_info < (3, 8):
-        print("Error: Python 3.8 or higher is required")
-        sys.exit(1)
+from setup_env import EnvironmentSetup
 
-def create_virtual_environment():
-    """Create a virtual environment if it doesn't exist."""
-    if not os.path.exists('venv'):
-        print("Creating virtual environment...")
-        subprocess.run([sys.executable, '-m', 'venv', 'venv'])
+setup = EnvironmentSetup()
 
-def install_requirements():
-    """Install required packages."""
-    pip_cmd = 'venv/Scripts/pip' if os.name == 'nt' else 'venv/bin/pip'
-    
-    print("Installing required packages...")
-    requirements = [
-        'pandas>=2.2.0',
-        'numpy>=1.26.0',
-        'matplotlib>=3.8.0',
-        'seaborn>=0.13.0',
-        'scikit-learn>=1.4.0',
-        'scipy>=1.12.0'
-    ]
-    
-    with open('requirements.txt', 'w') as f:
-        for req in requirements:
-            f.write(f"{req}\n")
-    
-    subprocess.run([pip_cmd, 'install', '-r', 'requirements.txt'])
+def setup_virtual_environment():
+    # Create and run the environment setup
+    setup.setup()
 
 def setup_project_structure():
     """Create project directories if they don't exist."""
+    print("Creating project structure...\n")
     directories = ['data', 'src', 'notebooks', 'tests']
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
+    print("✓ Project structure created")
 
 def main():
     print("Setting up Book Analysis project...")
-    check_python_version()
-    create_virtual_environment()
     setup_project_structure()
-    install_requirements()
-    print("\nSetup complete! You can now run the analysis using: python main.py")
+    setup_virtual_environment()
+    if not setup.check_virtual_environment():
+        # Show activation instructions at the end
+        print("\n=== IMPORTANT: Activate Your Virtual Environment ===")
+        self.activate_virtual_environment()
+    print("\n✓ Setup complete! You can now run the analysis using: python main.py")
 
 if __name__ == "__main__":
     main()

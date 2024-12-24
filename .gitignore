@@ -39,3 +39,4 @@ wheels/
 .Trashes
 ehthumbs.db
 Thumbs.db
+environment_info.json
