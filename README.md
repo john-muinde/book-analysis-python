@@ -18,10 +18,70 @@ venv\Scripts\activate
 # Unix/MacOS
 source venv/bin/activate
 ```
-5. Run the analysis:
+
+## Running the Analysis
+You have multiple options to run the analysis:
+
+### Option 1: Python Script (No Jupyter Required)
+Run the analysis directly using Python:
 ```bash
 python main.py
 ```
+This will:
+- Run all analyses sequentially
+- Show visualizations in popup windows
+- Print results to the console
+- Pause between outputs for readability
+
+### Option 2: Jupyter Notebook
+If you prefer an interactive environment:
+
+1. Install Jupyter (if not already installed):
+```bash
+pip install jupyter
+```
+
+2. Launch Jupyter:
+```bash
+jupyter notebook
+```
+
+3. Navigate to `notebooks/book_analysis.ipynb`
+4. Run cells individually or use "Run All"
+
+The notebook provides:
+- Interactive data exploration
+- In-line visualizations
+- Ability to modify code and rerun analyses
+- Better format for sharing results
+
+### VS Code Integration
+This project can be run directly in VS Code:
+
+#### Setup in VS Code
+1. Install recommended extensions:
+   - Python extension
+   - Jupyter extension (if using notebooks)
+
+2. Select Python Interpreter:
+   - Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (MacOS)
+   - Type "Python: Select Interpreter"
+   - Choose the interpreter from your virtual environment
+
+#### Running in VS Code
+1. Running Python Script:
+   - Open `main.py`
+   - Click the play button in the top right or
+   - Right-click and select "Run Python File in Terminal"
+
+2. Running Jupyter Notebook:
+   - Open `notebooks/book_analysis.ipynb`
+   - Use the cell run buttons or Shift+Enter to execute cells
+   - VS Code provides an integrated notebook experience with:
+     - IntelliSense code completion
+     - Variable explorer
+     - Integrated plots
+     - Debug support
 
 ## Case Study Questions and Answers
 
@@ -117,6 +177,8 @@ books-analysis/
 │   ├── __init__.py
 │   ├── analyzer.py
 │   └── utils.py
+├── notebooks/
+│   └── book_analysis.ipynb
 ├── tests/
 │   └── test_analyzer.py
 ├── main.py
